@@ -32,6 +32,7 @@ proxy.on('proxyReq', (proxyReq: any, req: any, _res: any, _options: any) => {
 
 // tslint:disable-next-line: no-any
 proxy.on('proxyRes', (proxyRes: any, req: any, _res: any, ) => {
+  delete proxyRes.headers['access-control-allow-origin']
   if (req.originalUrl.includes('/discussion/user/v1/create')) {
     const nodebb_auth_token = proxyRes.headers.nodebb_auth_token
     if (req.session) {
